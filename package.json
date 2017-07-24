@@ -1,0 +1,13 @@
+{
+  "name": "data-structures-tdd",
+  "version": "1.0.0",
+  "description": "Implement and learn data structures in JavaScript using test-driven development",
+  "main": "index.js",
+  "repository": "https://github.com/minseokim/data-structures-tdd.git",
+  "author": "minseokim <minseoalexkim@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2"
+  }
+}
