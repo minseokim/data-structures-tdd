@@ -1,4 +1,8 @@
-const BinarySearchTree = function() {};
+const BinarySearchTree = function(data) {
+  this.data = data;
+  this.leftChild = null;
+  this.rightChild = null;
+};
 
 BinarySearchTree.prototype.search = function() {};
 

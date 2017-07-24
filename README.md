@@ -6,8 +6,7 @@ Running the app :
 - Clone the repo to your local environment, run `SpecRunner.html` and implement each data structure in the `src` folder to make the test cases pass!
 
 Built with :
-- Mocha
-- Chai
+![MochaChaiLogo](http://i.imgur.com/2Smnw3W.png)
 
 Data Structures Supported :
 - Binary Search Trees
