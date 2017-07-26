@@ -1,5 +1,6 @@
 const assert = chai.assert;
 
+/* Binary Search Trees */
 describe("Binary Search Tree", () => {
   let BST;
 
@@ -113,16 +114,100 @@ describe("Binary Search Tree", () => {
     BST.insert(10);
     BST.insert(9);
     BST.insert(11);
-    //Delete leaf node
+    //Case 1 : Delete leaf node
     BST.delete(11);
     assert.equal(BST.search(11), false);
 
-    //Delete node with one child
+    //Case 2 : Delete node with one child
     BST.delete(10);
     assert.equal(BST.search(10), false);
 
-    //delete node with two children
+    //Case 3 : delete node with two children
     BST.delete(8);
     assert.equal(BST.search(8), false);
+  });
+});
+
+/*Binary Heaps(Min-Heap)*/
+describe("Binary Heap(Min)", () => {
+  let BinaryHeap;
+
+  beforeEach(function() {
+    BinaryHeap = new Heap();
+  });
+
+  it("should have properties '_storage', and '_size'", () => {
+    assert.equal(BinaryHeap.hasOwnProperty("_storage"), true);
+    assert.equal(BinaryHeap.hasOwnProperty("_size"), true);
+  });
+
+  it("should have methods, `heapifyUp`, `heapifyDown`, getLeftChildIndex`, `getRightChildIndex`, `getParentIndex`, 'search', `getSize`, 'insert', 'peekMin', 'removeMin', 'swap'", () => {
+    assert.typeOf(BinaryHeap.getLeftChildIndex, "function");
+    assert.typeOf(BinaryHeap.getRightChildIndex, "function");
+    assert.typeOf(BinaryHeap.getParentIndex, "function");
+    assert.typeOf(BinaryHeap.peekMin, "function");
+    assert.typeOf(BinaryHeap.insert, "function");
+    assert.typeOf(BinaryHeap.removeMin, "function");
+    assert.typeOf(BinaryHeap.swap, "function");
+    assert.typeOf(BinaryHeap.heapifyDown, "function");
+    assert.typeOf(BinaryHeap.heapifyUp, "function");
+  });
+
+  it("should peekMin correctly", () => {
+    BinaryHeap.insert(1);
+    BinaryHeap.insert(5);
+    BinaryHeap.insert(-2);
+    BinaryHeap.insert(-3);
+    assert.equal(BinaryHeap.peekMin(), -3);
+  });
+
+  it("should getLeftChild and check to see if leftChild exists correctly", () => {
+    BinaryHeap.insert(1);
+    BinaryHeap.insert(2);
+    BinaryHeap.insert(3);
+    assert.equal(BinaryHeap.getLeftChild(0), 2);
+    BinaryHeap.insert(4);
+    BinaryHeap.insert(5);
+    assert.equal(BinaryHeap.getLeftChild(1), 4);
+    assert.equal(BinaryHeap.hasLeftChild(4), false);
+  });
+
+  it("should getRightChild and check tos ee if rightChild exists correctly", () => {
+    BinaryHeap.insert(1);
+    BinaryHeap.insert(2);
+    BinaryHeap.insert(3);
+    assert.equal(BinaryHeap.getRightChild(0), 3);
+    BinaryHeap.insert(4);
+    BinaryHeap.insert(5);
+    assert.equal(BinaryHeap.getRightChild(1), 5);
+    assert.equal(BinaryHeap.hasRightChild(5), false);
+  });
+
+  it("should getRightChild and check tos ee if rightChild exists correctly", () => {
+    BinaryHeap.insert(1);
+    BinaryHeap.insert(2);
+    BinaryHeap.insert(3);
+    assert.equal(BinaryHeap.getRightChild(0), 3);
+    BinaryHeap.insert(4);
+    BinaryHeap.insert(5);
+    assert.equal(BinaryHeap.getRightChild(1), 5);
+    assert.equal(BinaryHeap.hasRightChild(5), false);
+  });
+
+  it("should insert and heapifyUp correctly", () => {
+    BinaryHeap.insert(1);
+    BinaryHeap.insert(-5);
+    BinaryHeap.insert(-10);
+    assert.equal(BinaryHeap._storage[0], -10);
+    BinaryHeap.insert(-20);
+    assert.equal(BinaryHeap._storage[0], -20);
+  });
+
+  it("should removeMin and heapifyDown correctly", () => {
+    BinaryHeap.insert(1);
+    BinaryHeap.insert(-5);
+    BinaryHeap.insert(-10);
+    assert.equal(BinaryHeap.removeMin(), -10);
+    assert.equal(BinaryHeap._storage[0], -5);
   });
 });
