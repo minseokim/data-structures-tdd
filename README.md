@@ -10,8 +10,7 @@ Built with :
 
 Data Structures Supported :
 - Binary Search Trees
-- Balanced Binary Search Trees(Coming Soon)
-- Binary Heaps(Coming Soon)
+- Binary Heaps
 - Graphs(Coming Soon)
 - Tries(Coming Soon)
 - Circular Arrays(Coming Soon)

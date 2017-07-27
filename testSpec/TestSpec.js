@@ -211,3 +211,19 @@ describe("Binary Heap(Min)", () => {
     assert.equal(BinaryHeap._storage[0], -5);
   });
 });
+
+/* Graphs(Direced, Adjacency-List implementation using a BST)*/
+describe("Graphs", () => {
+  let graphOne;
+
+  beforeEach(function() {
+    graphOne = new Graph();
+  });
+
+  it("should have properties 'vertices', 'edges', '_vertexSize' and '_edgeSize'", () => {
+    assert.equal(graphOne.hasOwnProperty("vertices"), true);
+    assert.equal(graphOne.hasOwnProperty("edges"), true);
+    assert.equal(graphOne.hasOwnProperty("_vertexSize"), true);
+    assert.equal(graphOne.hasOwnProperty("_edgeSize"), true);
+  });
+});
