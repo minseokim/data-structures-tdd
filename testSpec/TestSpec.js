@@ -226,4 +226,46 @@ describe("Graphs", () => {
     assert.equal(graphOne.hasOwnProperty("_vertexSize"), true);
     assert.equal(graphOne.hasOwnProperty("_edgeSize"), true);
   });
+
+  it("should add node correctly", () => {
+    graphOne.addVertex(1);
+    graphOne.addVertex(2);
+    assert.equal(graphOne.hasVertex(1), true);
+    assert.equal(graphOne.hasVertex(2), true);
+    assert.equal(graphOne.hasVertex(3), false);
+  });
+
+  it("should add edge correctly", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addEdge("a", "b");
+    assert.equal(graphOne.hasEdge("a", "b"), true);
+    assert.equal(graphOne.hasEdge("a", "c"), false);
+    assert.equal(graphOne.hasEdge("b", "c"), false);
+  });
+
+  it("should remove edges correctly", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addVertex("d");
+    graphOne.addEdge("a", "b");
+    graphOne.addEdge("a", "c");
+    graphOne.addEdge("a", "d");
+    graphOne.addEdge("b", "c");
+    console.log("graphOne :", graphOne);
+    //remove edge between a->c
+    graphOne.removeEdge("a", "c");
+    //remove edge between a->d
+    graphOne.removeEdge("a", "d");
+    //remove edge between b->c
+    graphOne.removeEdge("b", "c");
+
+    console.log("graphOne :", graphOne);
+    assert.equal(graphOne.hasEdge("a", "c"), false);
+    assert.equal(graphOne.hasEdge("b", "c"), false);
+    assert.equal(graphOne.hasEdge("a", "b"), true);
+    assert.equal(graphOne.hasEdge("c", "a"), false);
+  });
 });
