@@ -254,7 +254,7 @@ describe("Graphs", () => {
     graphOne.addEdge("a", "c");
     graphOne.addEdge("a", "d");
     graphOne.addEdge("b", "c");
-    console.log("graphOne :", graphOne);
+
     //remove edge between a->c
     graphOne.removeEdge("a", "c");
     //remove edge between a->d
@@ -262,10 +262,77 @@ describe("Graphs", () => {
     //remove edge between b->c
     graphOne.removeEdge("b", "c");
 
-    console.log("graphOne :", graphOne);
     assert.equal(graphOne.hasEdge("a", "c"), false);
     assert.equal(graphOne.hasEdge("b", "c"), false);
     assert.equal(graphOne.hasEdge("a", "b"), true);
     assert.equal(graphOne.hasEdge("c", "a"), false);
+  });
+
+  it("should remove vertex correctly", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addVertex("d");
+    graphOne.addEdge("a", "b");
+    graphOne.addEdge("a", "c");
+    graphOne.addEdge("a", "d");
+    graphOne.addEdge("b", "c");
+
+    graphOne.removeVertex("a");
+    graphOne.removeVertex("d");
+
+    assert.equal(graphOne.hasVertex("a"), false);
+    assert.equal(graphOne.hasVertex("d"), false);
+    assert.equal(graphOne.hasVertex("b"), true);
+    assert.equal(graphOne.hasVertex("c"), true);
+
+    //check edges
+    // assert.throws(graphOne.hasEdge("a", "b"), "throws error");
+    // assert.throws(graphOne.hasEdge("a", "d"), "throws error");
+    assert.equal(graphOne.hasEdge("b", "c"), true);
+  });
+
+  it("should get neighbors correctly", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addVertex("d");
+    graphOne.addEdge("a", "b");
+    graphOne.addEdge("a", "c");
+    graphOne.addEdge("a", "d");
+    graphOne.addEdge("b", "c");
+
+    assert.equal(JSON.stringify(graphOne.getNeighbors("a")), '["b","c","d"]');
+    assert.equal(JSON.stringify(graphOne.getNeighbors("b")), '["c"]');
+  });
+
+  it("should depth-first-traverse correctly", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addVertex("d");
+    graphOne.addEdge("a", "d");
+    graphOne.addEdge("a", "c");
+    graphOne.addEdge("a", "b");
+    graphOne.addEdge("b", "c");
+    assert.equal(JSON.stringify(graphOne.dfs("a")), `["c","b","d","a"]`);
+    graphOne.addEdge("c", "a");
+    graphOne.addEdge("c", "d");
+    assert.equal(JSON.stringify(graphOne.dfs("c")), `["b","d","a","c"]`);
+  });
+
+  it("should breadth-first-traverse correctly", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addVertex("d");
+    graphOne.addEdge("a", "d");
+    graphOne.addEdge("a", "c");
+    graphOne.addEdge("a", "b");
+    graphOne.addEdge("b", "c");
+    assert.equal(JSON.stringify(graphOne.bfs("a")), `["a","b","c","d"]`);
+    graphOne.addEdge("c", "a");
+    graphOne.addEdge("c", "d");
+    assert.equal(JSON.stringify(graphOne.bfs("c")), `["c","a","d","b"]`);
   });
 });

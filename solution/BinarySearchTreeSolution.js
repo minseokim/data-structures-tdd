@@ -27,6 +27,19 @@ BinarySearchTree.prototype.traverseIn = function(cb) {
   }
 };
 
+//Pre-Order
+BinarySearchTree.prototype.traversePre = function(cb) {
+  cb(this);
+
+  if (this.leftChild) {
+    this.leftChild.traverseIn(cb);
+  }
+
+  if (this.rightChild) {
+    this.rightChild.traverseIn(cb);
+  }
+};
+
 BinarySearchTree.prototype.insert = function(val) {
   if (this.data > val) {
     if (this.leftChild) {
