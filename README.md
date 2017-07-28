@@ -11,6 +11,6 @@ Built with :
 Data Structures Supported :
 - Binary Search Trees
 - Binary Heaps
-- Graphs(Coming Soon)
-- Tries(Coming Soon)
+- Graphs
 - Circular Arrays(Coming Soon)
+- Tries(Coming Soon)
