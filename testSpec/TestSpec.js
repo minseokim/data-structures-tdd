@@ -298,11 +298,10 @@ describe("Graphs", () => {
     graphOne.addVertex("c");
     graphOne.addVertex("d");
     graphOne.addEdge("a", "b");
-    graphOne.addEdge("a", "c");
-    graphOne.addEdge("a", "d");
     graphOne.addEdge("b", "c");
+    graphOne.addEdge("a", "d");
 
-    assert.equal(JSON.stringify(graphOne.getNeighbors("a")), '["b","c","d"]');
+    assert.equal(JSON.stringify(graphOne.getNeighbors("a")), '["b","d"]');
     assert.equal(JSON.stringify(graphOne.getNeighbors("b")), '["c"]');
   });
 
@@ -316,9 +315,6 @@ describe("Graphs", () => {
     graphOne.addEdge("a", "b");
     graphOne.addEdge("b", "c");
     assert.equal(JSON.stringify(graphOne.dfs("a")), `["c","b","d","a"]`);
-    graphOne.addEdge("c", "a");
-    graphOne.addEdge("c", "d");
-    assert.equal(JSON.stringify(graphOne.dfs("c")), `["b","d","a","c"]`);
   });
 
   it("should breadth-first-traverse correctly", () => {
@@ -334,5 +330,31 @@ describe("Graphs", () => {
     graphOne.addEdge("c", "a");
     graphOne.addEdge("c", "d");
     assert.equal(JSON.stringify(graphOne.bfs("c")), `["c","a","d","b"]`);
+  });
+
+  it("should get all vertices correctly by returning an iterator", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addVertex("d");
+    graphOne.addEdge("a", "d");
+    graphOne.addEdge("a", "c");
+    graphOne.addEdge("a", "b");
+    graphOne.addEdge("b", "c");
+    assert.equal(
+      JSON.stringify(Array.from(graphOne.getVertices())),
+      '["a","b","c","d"]'
+    );
+  });
+
+  it("should detect cycles correctly", () => {
+    graphOne.addVertex("a");
+    graphOne.addVertex("b");
+    graphOne.addVertex("c");
+    graphOne.addVertex("d");
+    graphOne.addEdge("a", "b");
+    graphOne.addEdge("b", "c");
+    graphOne.addEdge("c", "a");
+    assert.equal(graphOne.dfs("a"), []);
   });
 });
