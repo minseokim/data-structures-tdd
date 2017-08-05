@@ -14,5 +14,4 @@ Data Structures/Algorithms Supported :
 - Graphs
   - DFS(Augment it to detect cycles)
   - Topological Sort
-- Circular Arrays(Coming Soon)
-- Tries(Coming Soon)
+- Tries(Prefix Trees)
