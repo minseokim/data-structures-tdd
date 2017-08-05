@@ -135,7 +135,7 @@ Graph.prototype.getNeighbors = function(sourceNode) {
 Graph.prototype.dfs = function(currentVertex) {
   const visited = new Set();
   const result = [];
-  const currentDepthStack = new Set();
+  const currentDepthStack = [];
   const that = this;
   let neighbors;
 
@@ -143,19 +143,19 @@ Graph.prototype.dfs = function(currentVertex) {
     //set currentVertex as visited
     visited.add(vertex);
     //add to currentDepthStack
-    currentDepthStack.add(vertex);
+    currentDepthStack.push(vertex);
 
     neighbors = that.getNeighbors(vertex);
 
     for (let nextNeighbor of neighbors) {
       if (!visited.has(nextNeighbor)) {
         dfsRecurse(nextNeighbor);
-      } else if (currentDepthStack.has(nextNeighbor)) {
+      } else if (currentDepthStack.indexOf(nextNeighbor) !== -1) {
         throw new Error("Cycle detected!");
       }
     }
 
-    currentDepthStack.delete(vertex);
+    currentDepthStack.pop();
     result.push(vertex);
   };
 
@@ -194,3 +194,4 @@ Graph.prototype.bfs = function(currentVertex) {
 
   return result;
 };
+

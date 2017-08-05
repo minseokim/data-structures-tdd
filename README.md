@@ -8,9 +8,11 @@ Running the app :
 Built with :
 ![MochaChaiLogo](http://i.imgur.com/2Smnw3W.png)
 
-Data Structures Supported :
+Data Structures/Algorithms Supported :
 - Binary Search Trees
 - Binary Heaps
 - Graphs
+  - DFS(Augment it to detect cycles)
+  - Topological Sort
 - Circular Arrays(Coming Soon)
 - Tries(Coming Soon)

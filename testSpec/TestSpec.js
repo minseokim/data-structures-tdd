@@ -355,6 +355,59 @@ describe("Graphs", () => {
     graphOne.addEdge("a", "b");
     graphOne.addEdge("b", "c");
     graphOne.addEdge("c", "a");
-    assert.equal(graphOne.dfs("a"), []);
+    //Uncomment the line below, should throw an error
+    // assert.equal(graphOne.dfs("a"), []);
+  });
+});
+
+/* Tries */
+describe("Tries", () => {
+  let TrieRoot;
+
+  beforeEach(function() {
+    TrieRoot = new Trie();
+  });
+
+  it("should have properties root", () => {
+    assert.equal(TrieRoot.hasOwnProperty("root"), true);
+  });
+
+  it("should insert words properly", () => {
+    TrieRoot.insert("dictionary");
+    TrieRoot.insert("dictation");
+    TrieRoot.insert("dict");
+    TrieRoot.insert("ab");
+    TrieRoot.insert("abc");
+    console.log(TrieRoot);
+    assert.equal(TrieRoot.contains("dictionary"), true);
+    assert.equal(TrieRoot.contains("dictation"), true);
+    assert.equal(TrieRoot.contains("dic"), false);
+    assert.equal();
+  });
+
+  // it("should delete words correctly", () => {
+  //   TrieRoot.insert("dict");
+  //   TrieRoot.insert("ab");
+  //   TrieRoot.insert("abc");
+  //   TrieRoot.insert("di");
+
+  //   //Delete
+  //   TrieRoot.delete("abc");
+  //   TrieRoot.delete("di");
+
+  //   assert.equal(TrieRoot.contains("abc"), false);
+  //   assert.equal(TrieRoot.contains("ab"), true);
+  //   assert.equal(TrieRoot.contains("di"), false);
+  //   assert.equal(TrieRoot.contains("dict"), false);
+  // });
+
+  it("should get suggestions correctly", () => {
+    TrieRoot.insert("dictionary");
+    TrieRoot.insert("dictation");
+    TrieRoot.insert("ab");
+    TrieRoot.insert("abc");
+    TrieRoot.insert("dict");
+
+    assert.equal(TrieRoot.getSuggestions("dic"), true);
   });
 });
